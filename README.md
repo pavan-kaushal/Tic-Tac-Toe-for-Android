@@ -2,6 +2,10 @@
 # Tic Tac Toe for Android
  Multiplayer Tic Tac Toe Using ReactNative and Socket IO
 
+# ScreenShots
+![s11](https://user-images.githubusercontent.com/66527924/97099611-faa36700-16b0-11eb-8f7b-63b5c5a76289.png)    ![s22](https://user-images.githubusercontent.com/66527924/97099612-fc6d2a80-16b0-11eb-9b60-bb704d30bfce.png)
+
+
 # Features
 - Room creation
 
