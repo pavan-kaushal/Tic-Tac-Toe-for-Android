@@ -37,6 +37,8 @@ export class JoinRoom extends Component {
   }
   
     render() {
+      if(this.props.loading)
+      return(<Text style={{marginTop:70,fontSize:30,color:'blue',backgroundColor: '#D3D3D3',textAlign: 'center'}}>Loading...</Text>)
         if(!this.props.called){
         return (
             <View >
@@ -52,7 +54,7 @@ export class JoinRoom extends Component {
                 <TouchableOpacity style={styles.saveButton} onPress={() => this.submitRoomName()}>
                     <Text style={styles.saveButtonText}>Join</Text>
                 </TouchableOpacity>
-                <View></View>
+                <Text style={styles.danger}>*** RoomCode Should Not Have Spaces ***</Text>
             </View>
         )
       }
@@ -85,7 +87,7 @@ export class JoinRoom extends Component {
           {
             this.props.currentChance==this.props.player?<Text style={{fontSize:20,color:colour}}>Your Turn...</Text>:<Text style={{fontSize:20,color:colour}}>Opponent's Turn...</Text>
           }
-          <Text style={{fontSize:20}}>You : <Text style={{fontSize:30,color:myColour}}>{this.props.player}</Text></Text>
+          <Text style={{fontSize:20,color:'black'}}>You : <Text style={{fontSize:30,color:myColour}}>{this.props.player}</Text></Text>
           {
         boxItems
         } 
@@ -160,6 +162,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 15,
         color: '#fff'
+      },
+      danger:{
+        textAlign: 'center',
+        fontSize: 15,
+        color: 'red'
       }
   });
 export default JoinRoom
