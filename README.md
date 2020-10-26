@@ -28,5 +28,5 @@
 
 - https://docs.nativebase.io/
 
-## APK File 
-<a href="https://mega.nz/folder/AT5HGapR#_PjMvQkgbi4_KIcifc4yTw"><img src="https://miro.medium.com/max/375/1*TedleCknFgFMFJgXTVjOFg.png" width="50px" height="50px"></a>
+## APK File <img src="https://miro.medium.com/max/375/1*TedleCknFgFMFJgXTVjOFg.png" width="30px" height="30px">
+   <a href="https://mega.nz/folder/AT5HGapR#_PjMvQkgbi4_KIcifc4yTw"><img src="https://image.flaticon.com/icons/png/512/45/45162.png" width="40px" height="40px"></a>
