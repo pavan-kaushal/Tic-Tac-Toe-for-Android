@@ -7,8 +7,8 @@ import { CreateRoom } from'./components/CreateRoom';
 import { JoinRoom } from './components/JoinRoom';
 LogBox.ignoreAllLogs();
 
-//console._errorOriginal = console.error.bind(console);
-    //console.error = () => {};
+console._errorOriginal = console.error.bind(console);
+    console.error = () => {};
 
 export default class App extends Component {
   constructor(props) {
@@ -20,7 +20,9 @@ export default class App extends Component {
         called:false,
         p2Joined:false,
         roomText:"",
-        roomName:""
+        roomName:"",
+        loading:false,
+        loading2:false
     };
     this.emitter=this.emitter.bind(this);
     
@@ -28,8 +30,8 @@ export default class App extends Component {
 
 
   componentDidMount() {//,{transports: ['websocket'],pingTimeout: 30000}
-  this.socket = io("http://192.168.43.203:3000");
- 
+  this.socket = io("https://link_to_your_api_endPoint.com/");//link to the deployed API
+  
 
   this.socket.on("change state",data=>{
     this.setState({
@@ -58,6 +60,10 @@ export default class App extends Component {
 
   this.socket.on("error",msg=>{
     Alert.alert(msg)
+    this.setState({
+      loading:false,
+      loading2:false
+    })
   })
   
   this.socket.on("p2 message",check=>{
@@ -73,18 +79,22 @@ export default class App extends Component {
 
 getRoom=()=>{
   console.log("reached getRoom()")
+  this.setState({
+    loading:true
+  })
   this.socket.emit("create room")
   this.socket.on("room code",room=>{
     console.log(room)
     this.setState({
       roomText:room,
+      loading:false
     })
   })
 
 }
 handleShare = () => {
   url='https://mega.nz/folder/AT5HGapR#_PjMvQkgbi4_KIcifc4yTw';
-  message = `\nDownload the Sudoku Game App:${url}\n\nShared via Sudoku App`;
+  message = `\nDownload the Tic Tac Toe App:${url}\n\nShared via Tic Tac Toe App`;
   return Share.share(
       {message, url: url},
       {dialogTitle:`Share app link `}
@@ -103,13 +113,18 @@ joinRoom=(roomCode)=>{
   this.socket.emit("get room data",roomCode)
   console.log("room join : ",roomCode)
   this.socket.emit("join room",roomCode)
+  
   this.setState({
-    roomName:roomCode
+    roomName:roomCode,
+    loading2:true
   })
   this.socket.on("symbol",data=>{
     this.setState({
       player :data.player,
-      currentChance:data.next
+      currentChance:data.next,
+      ///loading2 to true///
+        loading2:false
+      
     });
     this.setState({
       called :true
@@ -143,10 +158,10 @@ setCalled=()=>{
               </Header>
               <Tabs>
                 <Tab heading="Create">
-                  <CreateRoom roomText={this.state.roomText} getRoom={this.getRoom} />
+                  <CreateRoom roomText={this.state.roomText} getRoom={this.getRoom} loading={this.state.loading} />
                 </Tab>
                 <Tab heading="Join">
-                  <JoinRoom box={ this.state.box } player={ this.state.player } currentChance={ this.state.currentChance } called={ this.state.called }  p2Joined={ this.state.p2Joined } joinRoom={this.joinRoom} handleMove={ this.handleMove } leaveRoom={this.leaveRoom} setCalled={this.setCalled} roomName={this.state.roomName} emitter={this.emitter}/>
+                  <JoinRoom box={ this.state.box } player={ this.state.player } currentChance={ this.state.currentChance } called={ this.state.called }  p2Joined={ this.state.p2Joined } joinRoom={this.joinRoom} handleMove={ this.handleMove } leaveRoom={this.leaveRoom} setCalled={this.setCalled} roomName={this.state.roomName} emitter={this.emitter} loading={this.state.loading2}/>
                 </Tab>
               </Tabs>
             </Container>
