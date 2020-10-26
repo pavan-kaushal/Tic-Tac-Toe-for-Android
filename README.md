@@ -28,5 +28,5 @@
 
 - https://docs.nativebase.io/
 
-#### APK File ####
-APK :  [Apk](https://mega.nz/folder/AT5HGapR#_PjMvQkgbi4_KIcifc4yTw "link")
+## APK File 
+<a href="https://mega.nz/folder/AT5HGapR#_PjMvQkgbi4_KIcifc4yTw"><img src="https://miro.medium.com/max/375/1*TedleCknFgFMFJgXTVjOFg.png" width="50px" height="50px"></a>
