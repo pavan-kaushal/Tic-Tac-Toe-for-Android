@@ -33,9 +33,8 @@ export class CreateRoom extends Component {
                     <Text style={styles.saveButtonText}>Create</Text>
                 </TouchableOpacity>
                 {
-                  this.props.roomText!=""?<Text style={styles.roomCodeText}>{this.props.roomText}      <Text onPress={this.handleShare} style={{color: 'white', fontSize:24,backgroundColor:'#3740ff'}}> &#10150; </Text></Text>:<Text></Text>
+                 this.props.loading?<Text style={styles.roomCodeText}><Text style={{color:'blue'}}>Loading.....</Text></Text>: this.props.roomText!=""?<Text style={styles.roomCodeText}>{this.props.roomText}      <Text onPress={this.handleShare} style={{color: 'white', fontSize:24,backgroundColor:'#3740ff'}}> &#10150; </Text></Text>:<Text></Text>
                 }
-        
             </View>
         )
     }
